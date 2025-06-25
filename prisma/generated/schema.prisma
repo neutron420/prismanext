@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://neondb_owner:npg_piDeZVso0m9O@ep-raspy-art-a1iyyov1-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+}
+
+model user {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  firstName   String?
+  lastName    String?
+  password    String
+  phoneNumber String?
+}
+
+model Todo {
+  id          Int     @id @default(autoincrement())
+  title       String
+  fonr        Boolean @default(false)
+  description String?
+}
