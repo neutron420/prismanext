@@ -14,18 +14,20 @@ datasource db {
   url      = "postgresql://neondb_owner:npg_piDeZVso0m9O@ep-raspy-art-a1iyyov1-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 }
 
-model user {
-  id          Int     @id @default(autoincrement())
-  email       String  @unique
-  firstName   String?
-  lastName    String?
-  password    String
-  phoneNumber String?
+model User {
+  id        Int    @id @default(autoincrement())
+  username  String @unique
+  password  String
+  firstName String
+  lastName  String
+  todos     Todo[]
 }
 
 model Todo {
   id          Int     @id @default(autoincrement())
   title       String
-  fonr        Boolean @default(false)
-  description String?
+  description String
+  done        Boolean @default(false)
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
 }
